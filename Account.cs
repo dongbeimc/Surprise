@@ -11,6 +11,9 @@ public partial class Account : Form
     public Label Username;
     public Label Password;
     public Label PasswordConfirmation;
+    private bool isGoing;
+    //StreamReader reader= new StreamReader("D:\\Passwordtod.txt");
+    //StreamWriter writer = new StreamWriter("D:\\Passwordtod.txt");
     Form1 form1 = new Form1();
 
     public Account()
@@ -47,7 +50,8 @@ public partial class Account : Form
         this.YaoQingPassword.Text = "";
         this.PasswordConfirmation.Location = new Point(10, 113);
         this.PasswordConfirmation.Size = new Size(50, 20);
-        this.PasswordConfirmation.Text = "邀请码";
+        this.PasswordConfirmation.Text = "验证码";
+        YaoQingPassword.PasswordChar = '*';
 
         this.Controls.Add(this.textBoxUsername);
         this.Controls.Add(this.textBoxPassword);
@@ -68,7 +72,20 @@ public partial class Account : Form
 
     private void button_Click(object sender, EventArgs e)
     {
-        if (YaoQingPassword.Text == "114514dongbei")
+        for (int i = 0; i <= 1; i++)
+        {
+            
+            if (YaoQingPassword.Text == Form1.Password[i])
+            {
+                isGoing=true;
+                break;
+            }
+            else
+            {
+                isGoing=false;
+            }
+        }
+        if (isGoing)
         {
             MessageBox.Show("注册成功");
 
@@ -79,6 +96,21 @@ public partial class Account : Form
             MessageBox.Show("邀请码错误");
             
             Form1.IsNewAccount = false;
+        }
+
+        try
+        {
+            StreamWriter writer = new StreamWriter("D:\\Passwordtod.txt");
+            //Write a line of text
+            writer.WriteLine(textBoxPassword.Text);
+            //Write a second line of text
+            writer.WriteLine(textBoxUsername.Text);
+            //Close the file
+            writer.Close();
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show("错误:" + exception.Message);
         }
     }
 }

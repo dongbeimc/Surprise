@@ -12,6 +12,15 @@
       <Compile Update="Account.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="Vip.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="VipPointWindows.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="LoginWindows.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>
